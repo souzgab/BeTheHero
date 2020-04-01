@@ -1,5 +1,5 @@
+const generateUiD = require('../utils/generateUiD')
 const connect = require('../database/conn'); // Conexão com o BD
-const crypto = require('crypto'); // Além de Cryptografia, gera o id Aleatório em HexaDecimal
 
 module.exports = {
     async ListOngs(request, response){ 
@@ -15,7 +15,7 @@ module.exports = {
             city,
             uf
         } = request.body;
-        const id = crypto.randomBytes(4).toString('HEX');
+        const id = generateUiD.generateUiD();
         await connect('ongs').insert({
             id,
             name,
